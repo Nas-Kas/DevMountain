@@ -255,12 +255,14 @@ module.exports = {
     },
     getCities: (req,res) => {
         sequelize.query(`
-            SELECT
-                cities.city_id AS city,
-                countries.country_id AS country
-            FROM cities
-            JOIN countries
-            ON cities.city_id = countries.country_id;
+        SELECT
+        cities.rating AS rating,
+        cities.city_id AS ids,
+        cities.city_id AS city,
+        countries.country_id AS country
+    FROM cities
+    JOIN countries
+    ON cities.city_id = countries.country_id;
         `).then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => {
             console.log('error on getCities: ' + err.message)
@@ -269,10 +271,11 @@ module.exports = {
     },
     deleteCity: (req,res) => {
         console.log(req.params)
-        const { city_id } = req.params;
+        const { id } = req.params;
+
         sequelize.query(`
         DELETE FROM cities 
-        WHERE city_id=${city_id}`
+        WHERE city_id=${id}`
         ).then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => {
             console.log('error on get delete cities:' + err.message)

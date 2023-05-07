@@ -45,7 +45,7 @@ function getCities() {
                     <button onclick="deleteCard(${elem['city_id']})">Delete</button>
                     </div>
                 `
-
+                //console.log(elem)
                 countryList.innerHTML += countryCard
             })
         })
