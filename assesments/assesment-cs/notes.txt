@@ -1,0 +1,23 @@
+Results for the tinyArray
+insert 47.8 μs
+append 91.3 μs
+Results for the smallArray
+insert 168.2 μs
+append 48.8 μs
+Results for the largeArray
+insert 10.4415 ms
+append 420.7 μs
+Results for the extraLargeArray
+insert 1.2171614 s
+append 4.1992 ms
+
+it seems like doublerAppend scales faster for larger values than doublerInsert
+because doublerAppend uses push which has constant time complexity for each insert
+its faster than doublerInsert that uses unshift which add elements to the beginning of the
+array to do this you need to shift all the existing elements which is really slow in terms of
+time complexity as the size of the array grows almost doing an O(n) operation for each shift
+
+doublerInsert is slow because unshift shifts all the elements to make space for a new elements
+in the beginning each of these are O(n)
+doublerAppend uses push which is an O(1) operation for each insertion
+
